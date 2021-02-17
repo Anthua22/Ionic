@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ToastController, NavController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { User } from 'src/app/users/interfaces/user.interface';
 const { Camera } = Plugins;
 
 @Component({
@@ -10,11 +11,13 @@ const { Camera } = Plugins;
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  user = {
+  user :User = {
     name: '',
     password: '',
     email: '',
-    avatar: ''
+    photo: '',
+    lat:0,
+    lng:0
   };
   password2 = '';
 
@@ -50,7 +53,7 @@ export class RegisterPage implements OnInit {
       resultType: CameraResultType.DataUrl // Base64 (url encoded)
     });
 
-    this.user.avatar = photo.dataUrl;
+    this.user.photo = photo.dataUrl;
   }
 
   async pickFromGallery() {
@@ -62,7 +65,7 @@ export class RegisterPage implements OnInit {
       resultType: CameraResultType.DataUrl // Base64 (url encoded)
     });
 
-    this.user.avatar = photo.dataUrl;
+    this.user.photo = photo.dataUrl;
   }
 
 }

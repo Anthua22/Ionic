@@ -1,6 +1,10 @@
 export interface User {
-    id?: number;
-    name: string;
-    email: string;
-    avatar: string;
+  name?: string;
+  email: string;
+  id?: number;
+  password?: string;
+  photo?: string;
+  me?: boolean;
+  lat?: number;
+  lng?: number;
 }

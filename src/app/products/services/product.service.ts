@@ -28,7 +28,7 @@ export class ProductService {
         map(resp => {
           const p = resp.product;
           p.imageUrl = environment.baseUrl + '/' + p.imageUrl;
-          p.creator.avatar = environment.baseUrl + '/' + p.creator.avatar;
+          p.creator.photo = environment.baseUrl + '/' + p.creator.photo;
           return p;
         })
       );
@@ -55,7 +55,7 @@ export class ProductService {
   addComment(idProd: number, comment: string): Observable<Comment> {
     return this.http.post<{comment: Comment}>(`${this.BASE_URL}/${idProd}/comments`, {text: comment}).pipe(
       map(resp => {
-        resp.comment.user.avatar = environment.baseUrl + '/' + resp.comment.user.avatar;
+        resp.comment.user.photo = environment.baseUrl + '/' + resp.comment.user.photo;
         return resp.comment;
       })
     );
@@ -64,7 +64,7 @@ export class ProductService {
   getComments(idProd): Observable<Comment[]> {
     return this.http.get<{comments: Comment[]}>(`${this.BASE_URL}/${idProd}/comments`).pipe(
       map(resp => resp.comments.map(c => {
-        c.user.avatar = environment.baseUrl + '/' + c.user.avatar;
+        c.user.photo = environment.baseUrl + '/' + c.user.photo;
         return c;
       }))
     );
