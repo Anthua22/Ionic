@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatchDirective } from './match.directive';
+import { PositiveValueDirective } from './positive-value.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    MatchDirective
+    MatchDirective,
+    PositiveValueDirective
   ],
   exports: [
-    MatchDirective
+    MatchDirective,
+    PositiveValueDirective
   ]
 })
 export class ValidatorsModule { }

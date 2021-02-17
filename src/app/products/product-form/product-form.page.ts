@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../interfaces/product.interface';
+import { Product, ProductAdd } from '../interfaces/product.interface';
 import { ProductService } from '../services/product.service';
 import { ToastController, NavController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { CategoriesService } from '../services/categories.service';
+import { Category } from '../interfaces/category';
 const { Camera } = Plugins;
 
 @Component({
@@ -11,22 +13,36 @@ const { Camera } = Plugins;
   styleUrls: ['./product-form.page.scss'],
 })
 export class ProductFormPage implements OnInit {
-  newProd: Product = {
+  newProd: ProductAdd = {
     description: '',
+    title:'',
     price: 0,
-    imageUrl: ''
+    category:0,
+    mainPhoto: ''
   };
+  categor : Category;
+
+  categories:Category[];
 
   constructor(
     private productService: ProductService,
     private toastCtrl: ToastController,
+    private categoryService:CategoriesService,
     private nav: NavController
   ) { }
 
   ngOnInit() {
+    this.categoryService.getCategories().subscribe(resp => {this.categories = resp
+
+    });
   }
 
+  change(category:Category){
+    this.newProd.category = category.id;
+  }
   addProduct() {
+    console.log(this.newProd);
+
     this.productService.addProduct(this.newProd).subscribe(
       async prod => {
         (await this.toastCtrl.create({
@@ -55,7 +71,7 @@ export class ProductFormPage implements OnInit {
       resultType: CameraResultType.DataUrl // Base64 (url encoded)
     });
 
-    this.newProd.imageUrl = photo.dataUrl;
+    this.newProd.mainPhoto = photo.dataUrl;
   }
 
   async pickFromGallery() {
@@ -67,7 +83,7 @@ export class ProductFormPage implements OnInit {
       resultType: CameraResultType.DataUrl // Base64 (url encoded)
     });
 
-    this.newProd.imageUrl = photo.dataUrl;
+    this.newProd.mainPhoto = photo.dataUrl;
   }
 
 }

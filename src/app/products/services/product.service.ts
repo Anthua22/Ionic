@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../interfaces/product.interface';
+import { Product, ProductAdd } from '../interfaces/product.interface';
 import { Comment } from '../interfaces/comment.interface';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -16,22 +16,16 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<{products: Product[]}>(this.BASE_URL)
-      .pipe(map(resp => resp.products.map(p => {
-        p.imageUrl = environment.baseUrl + '/' + p.imageUrl;
-        return p;
-      })));
+      .pipe(
+        map(resp => resp.products)
+      );
   }
 
   getProduct(id: number): Observable<Product> {
     return this.http.get<{product: Product}>(`${this.BASE_URL}/${id}`)
-      .pipe(
-        map(resp => {
-          const p = resp.product;
-          p.imageUrl = environment.baseUrl + '/' + p.imageUrl;
-          p.creator.photo = environment.baseUrl + '/' + p.creator.photo;
-          return p;
-        })
-      );
+    .pipe(
+      map(resp => resp.product)
+    );
   }
 
   changeRating(id: number, rating: number): Observable<number> {
@@ -39,13 +33,11 @@ export class ProductService {
       .pipe(map(resp => resp.rating));
   }
 
-  addProduct(prod: Product): Observable<Product> {
+  addProduct(prod: ProductAdd): Observable<Product> {
     return this.http.post<{product: Product}>(this.BASE_URL, prod)
-      .pipe(map(resp => {
-        const p = resp.product;
-        p.imageUrl = environment.baseUrl + '/' + p.imageUrl;
-        return p;
-      }));
+    .pipe(
+      map(resp => resp.product)
+    );
   }
 
   deleteProduct(idProd): Observable<void> {

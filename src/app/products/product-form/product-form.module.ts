@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProductFormPage } from './product-form.page';
+import { ValidatorsModule } from 'src/app/validators/validators.module';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ValidatorsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
