@@ -60,7 +60,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Category</ion-label>
-      <ion-select required>
+      <ion-select name="categories" required [(ngModel)]="newProd.category">
         <ion-select-option
           *ngFor="let category of categories"
           [value]="category.id"
