@@ -4,4 +4,6 @@
     <string name="title_activity_main">Ionic Products</string>
     <string name="package_name">com.arturober.ionic.products</string>
     <string name="custom_url_scheme">com.arturober.ionic.products</string>
+    <string name="server_client_id">642525211226-mmtp2tiush6nha272g6etq5kjdk5n79e.apps.googleusercontent.com</string>
+
 </resources>

@@ -33,9 +33,17 @@ export class LoginPage implements OnInit {
     );
   }
 
-  sayHello(){
-    console.log('Hola');
+  async loginGoogle() {
+    try {
+      let user = await Plugins.GoogleAuth.signIn();
+      console.log(user);
+    } catch (err) {
+      console.error(err);
+    }
   }
+
+
+
   login() {
     this.authService.login(this.email, this.password, this.firebaseToken).subscribe(
       () => this.router.navigate(['/products']),
