@@ -3,6 +3,7 @@ import { Observable, of, from, ReplaySubject } from 'rxjs';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Plugins } from '@capacitor/core';
+import { TokenResponse } from '../responses/user-response';
 const { Storage } = Plugins;
 
 @Injectable({
@@ -20,10 +21,10 @@ export class AuthService {
   }
 
   login(email: string, password: string, firebaseToken: string): Observable<void> {
-    return this.http.post<{accessToken: string}>('auth/login', {email, password, firebaseToken}).pipe(
+    return this.http.post<{ accessToken: string }>('auth/login', { email, password, firebaseToken }).pipe(
       switchMap(async r => { // switchMap must return a Promise or observable (a Promise in this case)
         try {
-          await Storage.set({key: 'fs-token', value: r.accessToken});
+          await Storage.set({ key: 'fs-token', value: r.accessToken });
           this.setLogged(true);
         } catch (e) {
           throw new Error('Can\'t save authentication token in storage!');
@@ -39,13 +40,13 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
-    await Storage.remove({key: 'fs-token'});
+    await Storage.remove({ key: 'fs-token' });
     this.setLogged(false);
   }
 
   isLogged(): Observable<boolean> {
     if (this.logged) { return of(true); }
-    return from(Storage.get({key: 'fs-token'})).pipe(
+    return from(Storage.get({ key: 'fs-token' })).pipe(
       switchMap(token => {
         if (!token.value) { throw new Error(); }
         return this.http.get('auth/validate').pipe(
@@ -59,5 +60,20 @@ export class AuthService {
     );
   }
 
-  
+
+  loginGoogle(token: string): Observable<void> {
+    return this.http
+      .post<TokenResponse>('auth/google', { token: token })
+      .pipe(
+        switchMap(async r => { // switchMap must return a Promise or observable (a Promise in this case)
+          try {
+            await Storage.set({ key: 'fs-token', value: r.accessToken });
+            this.setLogged(true);
+          } catch (e) {
+            throw new Error('Can\'t save authentication token in storage!');
+          }
+        })
+      );
+  }
+
 }
