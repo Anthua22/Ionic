@@ -33,6 +33,9 @@ export class LoginPage implements OnInit {
     );
   }
 
+  sayHello(){
+    console.log('Hola');
+  }
   login() {
     this.authService.login(this.email, this.password, this.firebaseToken).subscribe(
       () => this.router.navigate(['/products']),

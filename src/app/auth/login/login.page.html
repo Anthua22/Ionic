@@ -39,14 +39,18 @@
             <ion-icon name="log-in" slot="start"></ion-icon>
             Login
           </ion-button>
-          <button ion-button slot="center" color="danger">
-            <ion-icon name="logo-google"></ion-icon>
-          </button>
+        </ion-col>
+        <ion-col>
+          <ion-button  color="danger" expand="block" (click)="sayHello()">
+            <ion-icon name="logo-google" slot="start"></ion-icon>
+            Google
+          </ion-button>
         </ion-col>
         <ion-col>
           <ion-button
             color="tertiary"
             expand="block"
+            
             [routerLink]="['/auth/register']"
             [routerDirection]="'root'"
           >
