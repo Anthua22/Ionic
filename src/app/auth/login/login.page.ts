@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
   async loginGoogle() {
     try {
       let user = await Plugins.GoogleAuth.signIn();
-  
+    
       this.authService.loginGoogle(user.authentication.idToken).subscribe(
         ()=> this.router.navigate(['/products']),
         async err=>{
@@ -49,11 +49,7 @@ export class LoginPage implements OnInit {
       )
       
     } catch (err) {
-      (await this.alertCtrl.create({
-        header: 'Login error',
-        message: err,
-        buttons: ['Ok']
-      })).present();
+      console.log(err);
     }
   }
 
