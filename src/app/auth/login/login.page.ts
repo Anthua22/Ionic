@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
           })).present();
         }
       )
-      console.log(user);
+      
     } catch (err) {
       (await this.alertCtrl.create({
         header: 'Login error',

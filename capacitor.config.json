@@ -10,7 +10,7 @@
     },
     "GoogleAuth": {
       "scopes": ["profile", "email"],
-      "serverClientId": "642525211226-mmtp2tiush6nha272g6etq5kjdk5n79e.apps.googleusercontent.com"
+      "serverClientId": "642525211226-drg3bbbvsj638oso0ahgpoug4ti7i0q7.apps.googleusercontent.com"
       }
   },
   "cordova": {}
