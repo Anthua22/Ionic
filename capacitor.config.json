@@ -1,5 +1,5 @@
 {
-  "appId": "com.arturober.ionic.products",
+  "appId": "com.arturober.ionic.capacitor",
   "appName": "Ionic Products",
   "bundledWebRuntime": false,
   "npmClient": "npm",

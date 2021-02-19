@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:667204529710:android:760d74071bc440187f39bf",
         "android_client_info": {
-          "package_name": "com.arturober.ionic.products"
+          "package_name": "com.arturober.ionic.capacitor"
         }
       },
       "oauth_client": [

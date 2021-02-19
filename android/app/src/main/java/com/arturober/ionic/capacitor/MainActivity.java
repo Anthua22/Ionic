@@ -1,4 +1,4 @@
-package com.arturober.ionic.products;
+package com.arturober.ionic.capacitor;
 
 import android.os.Bundle;
 

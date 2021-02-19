@@ -1,5 +1,5 @@
 {
-  "appId": "com.arturober.ionic.products",
+  "appId": "com.arturober.ionic.capacitor",
   "appName": "Ionic Products",
   "bundledWebRuntime": false,
   "npmClient": "npm",
@@ -10,7 +10,7 @@
     },
     "GoogleAuth": {
       "scopes": ["profile", "email"],
-      "serverClientId": "642525211226-mmtp2tiush6nha272g6etq5kjdk5n79e.apps.googleusercontent.com"
+      "serverClientId": "667204529710-2b9jd5idoqepfe6ahpq3qo9kvtkmpdcb.apps.googleusercontent.com"
       }
   },
   "cordova": {}
