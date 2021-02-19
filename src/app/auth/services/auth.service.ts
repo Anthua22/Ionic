@@ -76,4 +76,22 @@ export class AuthService {
       );
   }
 
+  loginFacebook(token: string): Observable<string> {
+    console.log(token);
+    return this.http
+      .post<TokenResponse>('auth/facebook', { token: token })
+      .pipe(
+        switchMap(async r => { // switchMap must return a Promise or observable (a Promise in this case)
+          try {
+            await Storage.set({ key: 'fs-token', value: r.accessToken });
+            this.setLogged(true);
+            return r.accessToken;
+          } catch (e) {
+            throw new Error('Can\'t save authentication token in storage!');
+          }
+        })
+       );
+  }
+
+
 }

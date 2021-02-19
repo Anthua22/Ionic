@@ -7,6 +7,7 @@ import {
   Plugins,
   PushNotificationToken
 } from '@capacitor/core';
+import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 const { PushNotifications } = Plugins;
 
 @Component({
@@ -18,11 +19,18 @@ export class LoginPage implements OnInit {
   email = '';
   password = '';
   firebaseToken = null;
+  accessToken:string;
 
   constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     PushNotifications.register();
+    const resp = await FacebookLogin.getCurrentAccessToken() as
+      FacebookLoginResponse;
+    if (resp.accessToken) {
+      this.accessToken = resp.accessToken.token;
+      
+    }
 
     // On success, we should be able to receive notifications
     PushNotifications.addListener('registration',
@@ -36,10 +44,10 @@ export class LoginPage implements OnInit {
   async loginGoogle() {
     try {
       let user = await Plugins.GoogleAuth.signIn();
-    
+
       this.authService.loginGoogle(user.authentication.idToken).subscribe(
-        ()=> this.router.navigate(['/products']),
-        async err=>{
+        () => this.router.navigate(['/products']),
+        async err => {
           (await this.alertCtrl.create({
             header: 'Login error',
             message: err,
@@ -47,7 +55,7 @@ export class LoginPage implements OnInit {
           })).present();
         }
       )
-      
+
     } catch (err) {
       (await this.alertCtrl.create({
         header: 'Login error',
@@ -70,6 +78,25 @@ export class LoginPage implements OnInit {
         })).present();
       }
     );
+  }
+
+  async loginFacebook() {
+    const resp = await FacebookLogin.login({ permissions: ['email'] }) as FacebookLoginResponse;
+    if (resp.accessToken) {
+      this.authService.loginFacebook(resp.accessToken.token).subscribe(
+
+        (x)=> this.router.navigate(['/products']),
+        async error => {
+          (await this.alertCtrl.create({
+            header: 'Login error',
+            message: error,
+            buttons: ['Ok']
+          })).present();
+        }
+      );
+    }
+
+
   }
 
 }
