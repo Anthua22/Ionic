@@ -49,7 +49,11 @@ export class LoginPage implements OnInit {
       )
       
     } catch (err) {
-      console.log(err);
+      (await this.alertCtrl.create({
+        header: 'Login error',
+        message: err,
+        buttons: ['Ok']
+      })).present();
     }
   }
 
