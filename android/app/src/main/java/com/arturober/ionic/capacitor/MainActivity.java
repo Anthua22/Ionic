@@ -6,6 +6,7 @@ import com.codetrixstudio.capacitor.GoogleAuth.GoogleAuth;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.community.facebooklogin.FacebookLogin;
+import com.servicesight.capacitor.startnavigation.StartNavigationPlugin;
 
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MainActivity extends BridgeActivity {
       // Ex: add(TotallyAwesomePlugin.class);
       add(GoogleAuth.class);
       add(FacebookLogin.class);
-
+      add(StartNavigationPlugin.class);
     }});
   }
 }

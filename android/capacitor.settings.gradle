@@ -7,3 +7,6 @@ project(':capacitor-community-facebook-login').projectDir = new File('../node_mo
 
 include ':codetrix-studio-capacitor-google-auth'
 project(':codetrix-studio-capacitor-google-auth').projectDir = new File('../node_modules/@codetrix-studio/capacitor-google-auth/android')
+
+include ':proteansoftware-capacitor-start-navigation'
+project(':proteansoftware-capacitor-start-navigation').projectDir = new File('../node_modules/@proteansoftware/capacitor-start-navigation/android')

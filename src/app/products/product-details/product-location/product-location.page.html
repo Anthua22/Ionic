@@ -14,6 +14,11 @@
     [center]="[product.owner.lng, product.owner.lat]"
   >
     <mgl-marker #marker [lngLat]="[product.owner.lng, product.owner.lat]"></mgl-marker>
-    <mgl-popup [marker]="marker"> You are here </mgl-popup>
+    <mgl-popup [marker]="marker"> The owner is here </mgl-popup>
   </mgl-map>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="startNavigation()">
+      <ion-icon name="navigate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
