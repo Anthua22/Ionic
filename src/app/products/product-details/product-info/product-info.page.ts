@@ -3,6 +3,7 @@ import { Product } from '../../interfaces/product.interface';
 import { AlertController, NavController } from '@ionic/angular';
 import { ProductService } from '../../services/product.service';
 import { ProductDetailsPage } from '../product-details.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-info',
@@ -12,10 +13,12 @@ import { ProductDetailsPage } from '../product-details.page';
 export class ProductInfoPage implements OnInit {
   product: Product;
 
+
   constructor(
     private alertCrl: AlertController,
     private productService: ProductService,
     private nav: NavController,
+    private router:Router,
     @Inject(ProductDetailsPage) private parentComponent: ProductDetailsPage
   ) {}
 
@@ -45,5 +48,9 @@ export class ProductInfoPage implements OnInit {
       ]
     });
     alert.present();
+  }
+
+  goEditForm(){
+     this.router.navigate(['/products/edit',this.product.id]);
   }
 }

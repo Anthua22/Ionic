@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../interfaces/product.interface';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -19,32 +20,55 @@ export class ProductListPage implements OnInit {
       prods => this.products = prods
     );
   }
-
+  doRefresh(event){
+    this.productService.getProducts().subscribe(x=> {this.products = x;   event.target.complete();});
+  
+  }
   async showOptions(prod: Product) {
-    const actSheet = await this.actionSheetCtrl.create({
-      header: prod.description,
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.productService.deleteProduct(prod.id).subscribe(
-            () => this.products.splice(this.products.indexOf(prod), 1)
-          );
-        }
-      }, {
-        text: 'See details',
-        icon: 'eye',
-        handler: () => {
-          this.router.navigate(['/products/details', prod.id]);
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-      }]
-    });
-
-    actSheet.present();
+    if(prod.mine){
+      const actSheet = await this.actionSheetCtrl.create({
+        header: prod.description,
+        buttons: [{
+          text: 'Delete',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.productService.deleteProduct(prod.id).subscribe(
+              () => this.products.splice(this.products.indexOf(prod), 1)
+            );
+          }
+        }, {
+          text: 'See details',
+          icon: 'eye',
+          handler: () => {
+            this.router.navigate(['/products/details', prod.id]);
+          }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+        }]
+      });
+  
+      actSheet.present();
+    }else{
+      const actSheet = await this.actionSheetCtrl.create({
+        header: prod.description,
+        buttons: [ {
+          text: 'See details',
+          icon: 'eye',
+          handler: () => {
+            this.router.navigate(['/products/details', prod.id]);
+          }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+        }]
+      });
+  
+      actSheet.present();
+    }
+   
   }
 }

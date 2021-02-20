@@ -18,7 +18,12 @@ const routes: Routes = [
     path: 'products', 
     loadChildren: () => import('./products/products.module').then( m => m.ProductsModule),
     canActivate: [LoginActivateGuard] 
+  },{
+    path: 'users',
+    loadChildren: ()=>import('./users/users.module').then(m=>m.UsersModule),
+    canActivate: [LoginActivateGuard]
   }
+
 ];
 
 @NgModule({

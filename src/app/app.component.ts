@@ -29,6 +29,11 @@ export class AppComponent {
       title: 'Add product',
       url: '/products/add',
       icon: 'add-circle'
+    },
+    {
+      title: 'My profile',
+      url: '/users/me',
+      icon: 'person'
     }
   ];
 
