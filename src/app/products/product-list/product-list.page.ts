@@ -44,6 +44,12 @@ export class ProductListPage implements OnInit {
             this.router.navigate(['/products/details', prod.id]);
           }
         }, {
+          text: 'Edit',
+          icon: 'create',
+          handler: () => {
+            this.router.navigate(['/products/edit', prod.id]);
+          }
+        }, {
           text: 'Cancel',
           icon: 'close',
           role: 'cancel',
