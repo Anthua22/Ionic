@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChangePasswordPage } from './change-password.page';
 import { RouterModule, Routes } from '@angular/router';
+import { ValidatorsModule } from 'src/app/validators/validators.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ValidatorsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ChangePasswordPage]
