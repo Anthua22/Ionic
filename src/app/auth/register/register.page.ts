@@ -4,6 +4,7 @@ import { ToastController, NavController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { User } from 'src/app/users/interfaces/user.interface';
 const { Camera } = Plugins;
+const { Geolocation } = Plugins;
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,20 @@ export class RegisterPage implements OnInit {
     private nav: NavController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    try{
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.user.lat = coordinates.coords.latitude;
+      this.user.lng = coordinates.coords.longitude;
+    }catch(Error){
+      (await this.toast.create({
+        duration: 3000,
+        position: 'bottom',
+        message: 'You need allow permission of location for register'
+      })).present();
+    }
+    
+    
   }
 
   register() {

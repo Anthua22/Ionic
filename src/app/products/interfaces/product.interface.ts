@@ -12,7 +12,6 @@ interface ProductBase {
   numVisits?: number;
   category: number | Category;
   mine?: boolean;
-
   datePublished?: string;
   distance?: number;
   status?:number;

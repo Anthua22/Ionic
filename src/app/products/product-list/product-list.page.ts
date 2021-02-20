@@ -21,30 +21,50 @@ export class ProductListPage implements OnInit {
   }
 
   async showOptions(prod: Product) {
-    const actSheet = await this.actionSheetCtrl.create({
-      header: prod.description,
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.productService.deleteProduct(prod.id).subscribe(
-            () => this.products.splice(this.products.indexOf(prod), 1)
-          );
-        }
-      }, {
-        text: 'See details',
-        icon: 'eye',
-        handler: () => {
-          this.router.navigate(['/products/details', prod.id]);
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-      }]
-    });
-
-    actSheet.present();
+    if(prod.mine){
+      const actSheet = await this.actionSheetCtrl.create({
+        header: prod.description,
+        buttons: [{
+          text: 'Delete',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.productService.deleteProduct(prod.id).subscribe(
+              () => this.products.splice(this.products.indexOf(prod), 1)
+            );
+          }
+        }, {
+          text: 'See details',
+          icon: 'eye',
+          handler: () => {
+            this.router.navigate(['/products/details', prod.id]);
+          }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+        }]
+      });
+  
+      actSheet.present();
+    }else{
+      const actSheet = await this.actionSheetCtrl.create({
+        header: prod.description,
+        buttons: [ {
+          text: 'See details',
+          icon: 'eye',
+          handler: () => {
+            this.router.navigate(['/products/details', prod.id]);
+          }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+        }]
+      });
+  
+      actSheet.present();
+    }
+   
   }
 }

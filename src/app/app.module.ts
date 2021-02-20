@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,9 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken:'pk.eyJ1IjoiYW50aG9ueXViaSIsImEiOiJja2dtODlnMjAwYWQ2MnRqbzNlY29ib282In0.wi12UKThrEvuKZ5nWCxq8g'
+    }),
     HttpClientModule
   ],
   providers: [

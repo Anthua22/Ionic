@@ -1,23 +1,56 @@
 <ion-header>
-  <ion-toolbar></ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{product?.description}}</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card *ngIf="product">
-    <img [src]="product.imageUrl">
+    <img [src]="product.mainPhoto" />
     <ion-card-content>
       <ion-card-title>{{product.description}}</ion-card-title>
-      <ion-card-subtitle>{{product.price | currency:'EUR':'symbol'}}</ion-card-subtitle>
-      <ion-button expand="block" color="danger" (click)="delete()">
+      <ion-card-subtitle
+        >{{product.price | currency:'EUR':'symbol'}}</ion-card-subtitle
+      >
+
+      <ion-button
+        expand="block"
+        color="danger"
+        (click)="delete()"
+        *ngIf="product.mine"
+      >
         <ion-icon name="trash" slot="start"></ion-icon>
         <ion-label>Delete</ion-label>
       </ion-button>
+
+      <ion-button
+        expand="block"
+        color="primary"
+        (click)="delete()"
+        *ngIf="product.mine"
+      >
+        <ion-icon name="edit" slot="start"></ion-icon>
+        <ion-label>Edit</ion-label>
+      </ion-button>
     </ion-card-content>
-    <ion-item lines="none">
-      <ion-avatar slot="start">
-        <img [src]="product.creator.avatar">
-      </ion-avatar>
-      <ion-label>{{product.creator.name}}</ion-label>
-    </ion-item>
+    <a *ngIf="!product.mine" [routerLink]="['/users',product.owner.id]">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="product.owner.photo" />
+        </ion-avatar>
+        <ion-label>{{product.owner.name}}</ion-label>
+      </ion-item>
+    </a>
+    <a *ngIf="product.mine" [routerLink]="['/users/me']">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="product.owner.photo" />
+        </ion-avatar>
+        <ion-label>{{product.owner.name}}</ion-label>
+      </ion-item>
+    </a>
   </ion-card>
 </ion-content>
