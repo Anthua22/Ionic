@@ -24,8 +24,11 @@ export class LoginPage implements OnInit {
   constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController) { }
 
   async ngOnInit() {
-    PushNotifications.register();
-    const resp = await FacebookLogin.getCurrentAccessToken() as
+   // PushNotifications.register();
+    
+   
+   
+   const resp = await FacebookLogin.getCurrentAccessToken() as
       FacebookLoginResponse;
     if (resp.accessToken) {
       this.accessToken = resp.accessToken.token;
@@ -33,12 +36,12 @@ export class LoginPage implements OnInit {
     }
 
     // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
+    /*PushNotifications.addListener('registration',
       (token: PushNotificationToken) => {
         this.firebaseToken = token.value;
         console.log(token);
       }
-    );
+    );*/
   }
 
   async loginGoogle() {

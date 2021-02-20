@@ -92,12 +92,21 @@ export class PhotoProductPage implements OnInit {
       this.productsService
         .addPhotoProduct(this.photo, this.product.id!)
         .subscribe(
-          (x) => {
+          async(x) => {
             this.product.photos!.push(x);
             this.photo = "";
             this.photoFile = "";
+            (await this.toastCtrl.create({
+              position: 'bottom',
+              duration: 3000,
+              message: 'Photo adding successfully'
+            })).present()
           },
-          (err) => console.error(err)
+          async (err) => (await this.toastCtrl.create({
+            position: 'bottom',
+            duration: 3000,
+            message: 'Error adding photo'
+          })).present()
         );
     }
   }
