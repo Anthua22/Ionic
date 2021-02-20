@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Photos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addPhoto()" #photoForm="ngForm">
+    <ion-item>
+      <ion-label position="inset">Avatar</ion-label>
+      <ion-button color="secondary" (click)="takePhoto()">
+        <ion-icon name="camera" slot="start"></ion-icon>
+        Camera
+      </ion-button>
+      <ion-button color="tertiary" (click)="pickFromGallery()">
+        <ion-icon name="images" slot="start"></ion-icon>
+        Gallery
+      </ion-button>
+    </ion-item>
+   
+    <ion-button
+      type="submit"
+      color="primary"
+      expand="block"
+      [disabled]="photoForm.invalid"
+    >
+      <ion-icon name="paper" slot="start"></ion-icon>
+      Save
+    </ion-button>
+  </form>
+
+  <ion-card *ngFor="let photo of product.photos">
+    <img [src]="photo.url" [alt]="photo.id"/>
+    <ion-footer>
+      <ion-col>
+        <ion-button color="primary" (click)="updateMainPhoto(photo)">
+          <ion-icon name="home"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger" (click)="borrarPhoto(photo)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-col>
+      
+    </ion-footer>
+  </ion-card>
+</ion-content>

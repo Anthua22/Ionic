@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../../interfaces/product.interface';
 import { ProductDetailsPage } from '../product-details.page';
 
@@ -9,12 +10,14 @@ import { ProductDetailsPage } from '../product-details.page';
 })
 export class PhotosProductPage implements OnInit {
   product:Product;
-  constructor( @Inject(ProductDetailsPage) private parentComponent: ProductDetailsPage) { }
+  constructor( @Inject(ProductDetailsPage) private parentComponent: ProductDetailsPage,private router:Router) { }
 
   ngOnInit() {
     this.parentComponent.product$.subscribe(
       product => this.product = product
     );
   }
-
+  goPhotos(){
+    this.router.navigate(['/products/photos',this.product.id]);
+  }
 }

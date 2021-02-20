@@ -67,7 +67,9 @@ export class ProductFormPage implements OnInit {
     }
 
   }
-
+  goPhotos(){
+    this.router.navigate(['/products/photos',this.newProd.id]);
+  }
   operation() {
     if (this.productRecive) {
       this.productService.editProduct(this.newProd).subscribe(x => {

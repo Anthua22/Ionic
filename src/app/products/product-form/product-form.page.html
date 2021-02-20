@@ -119,6 +119,10 @@
             Cancel
           </ion-button>
         </ion-col>
+        <ion-col *ngIf="productRecive">
+            <ion-button (click)="goPhotos()" color="primary">Photos</ion-button>
+        </ion-col>
+      
       </ion-row>
     </ion-grid>
   </form>
