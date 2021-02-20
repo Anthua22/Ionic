@@ -64,7 +64,6 @@ export class ProductFormPage implements OnInit {
       this.newProd.category = otherProduct.category.id;
       this.newProd.description = otherProduct.description;
       this.newProd.price = otherProduct.price;
-
     }
 
   }
@@ -108,8 +107,6 @@ export class ProductFormPage implements OnInit {
     }
 
   }
-
-
 
   async takePhoto() {
 

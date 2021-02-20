@@ -1,9 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>changePhoto</ion-title>
+    <ion-title>Change Avatar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form #photoForm="ngForm" (ngSubmit)="changeAvatar()">
+    <ion-item>
+      <ion-label position="inset">Avatar</ion-label>
+      <ion-button color="secondary" (click)="takePhoto()">
+        <ion-icon name="camera" slot="start"></ion-icon>
+        Camera
+      </ion-button>
+      <ion-button color="tertiary" (click)="pickFromGallery()">
+        <ion-icon name="images" slot="start"></ion-icon>
+        Gallery
+      </ion-button>
+    </ion-item>
+    <ion-img [src]="user.photo" *ngIf="user.photo"></ion-img>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            type="submit"
+            color="primary"
+            expand="block"
+            [disabled]="photoForm.invalid"
+          >
+            <ion-icon name="paper" slot="start"></ion-icon>
+            Save
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button
+            color="danger"
+            expand="block"
+            (click)="cancel()"
+          >
+            <ion-icon name="paper" slot="start"></ion-icon>
+            Cancel
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

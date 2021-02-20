@@ -19,7 +19,8 @@ const routes: Routes = [
       user: ResolverService
     }
     
-  },  {
+  },
+  {
     path: 'editinfo',
     loadChildren: () => import('./editinfo/editinfo.module').then( m => m.EditinfoPageModule)
   },
@@ -31,6 +32,7 @@ const routes: Routes = [
     path: 'change-photo',
     loadChildren: () => import('./change-photo/change-photo.module').then( m => m.ChangePhotoPageModule)
   }
+  
 
 ];
 

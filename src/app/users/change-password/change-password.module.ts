@@ -6,12 +6,21 @@ import { IonicModule } from '@ionic/angular';
 
 
 import { ChangePasswordPage } from './change-password.page';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ChangePasswordPage
+  }
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [ChangePasswordPage]
 })

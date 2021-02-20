@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePasswordPageModule } from '../change-password/change-password.module';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+
   imports: [
     CommonModule,
     FormsModule,
