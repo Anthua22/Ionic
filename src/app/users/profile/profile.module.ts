@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProfilePage } from './profile.page';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordPageModule } from '../change-password/change-password.module';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxMapboxGLModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProfilePage]

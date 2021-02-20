@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProductDetailsPage } from './product-details.page';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxMapboxGLModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProductDetailsPage]

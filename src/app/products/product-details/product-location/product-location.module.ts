@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 
+
 const routes: Routes = [
   {
     path: '',
