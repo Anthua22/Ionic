@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../interfaces/product.interface';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -19,7 +20,10 @@ export class ProductListPage implements OnInit {
       prods => this.products = prods
     );
   }
-
+  doRefresh(event){
+    this.productService.getProducts().subscribe(x=> {this.products = x;   event.target.complete();});
+  
+  }
   async showOptions(prod: Product) {
     if(prod.mine){
       const actSheet = await this.actionSheetCtrl.create({

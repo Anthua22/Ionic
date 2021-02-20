@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UsereditPage } from './useredit.page';
+import { EditinfoPage } from './editinfo.page';
 
 @NgModule({
   imports: [
@@ -12,6 +12,6 @@ import { UsereditPage } from './useredit.page';
     FormsModule,
     IonicModule
   ],
-  declarations: [UsereditPage]
+  declarations: [EditinfoPage]
 })
-export class UsereditPageModule {}
+export class EditinfoPageModule {}

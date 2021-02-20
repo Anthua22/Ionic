@@ -5,6 +5,7 @@ import { Product, ProductAdd } from '../interfaces/product.interface';
 import { Comment } from '../interfaces/comment.interface';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ProductResponse } from '../interfaces/responses/product-response';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,18 @@ export class ProductService {
     );
   }
 
+  
+  editProduct(product: ProductAdd): Observable<Product> {
+    return this.http.put<ProductResponse>(`${this.BASE_URL}/${product.id}`, {
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      category: +product.category
+    }).pipe(
+      map(z => z.product)
+    );
+
+  }
   deleteProduct(idProd): Observable<void> {
     return this.http.delete(`${this.BASE_URL}/${idProd}`).pipe(map(() => null));
   }
