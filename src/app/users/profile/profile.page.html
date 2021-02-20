@@ -17,7 +17,7 @@
       <ion-card-subtitle
         ><ion-label>{{user.email}}</ion-label></ion-card-subtitle
       >
-      <ion-footer>
+      <ion-footer *ngIf="user.me">
         <ion-grid>
           <ion-col>
             <ion-button color="primary" (click)="openChangePass()">

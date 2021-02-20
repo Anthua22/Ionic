@@ -26,7 +26,11 @@ const routes: Routes = [
     resolve:{
       product:ProductresolverService
     }
+  },  {
+    path: 'photos-product',
+    loadChildren: () => import('./product-details/photos-product/photos-product.module').then( m => m.PhotosProductPageModule)
   }
+
 
 ];
 

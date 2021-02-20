@@ -7,6 +7,7 @@ import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.community.facebooklogin.FacebookLogin;
 
+
 import java.util.ArrayList;
 
 public class MainActivity extends BridgeActivity {
@@ -20,6 +21,7 @@ public class MainActivity extends BridgeActivity {
       // Ex: add(TotallyAwesomePlugin.class);
       add(GoogleAuth.class);
       add(FacebookLogin.class);
+
     }});
   }
 }

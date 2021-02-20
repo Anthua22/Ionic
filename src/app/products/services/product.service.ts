@@ -76,7 +76,7 @@ export class ProductService {
   }
 
 
-  /*addComment(idProd: number, comment: string): Observable<Comment> {
+  addComment(idProd: number, comment: string): Observable<Comment> {
     return this.http.post<{ comment: Comment }>(`${this.BASE_URL}/${idProd}/rating`, { text: comment }).pipe(
       map(resp => {
         resp.comment.user.photo = environment.baseUrl + '/' + resp.comment.user.photo;
@@ -92,5 +92,6 @@ export class ProductService {
         return c;
       }))
     );
-  }*/
+  }
+  
 }

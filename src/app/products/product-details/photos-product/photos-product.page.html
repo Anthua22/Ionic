@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>photos-product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides>
+    <ion-slide *ngFor="let photo of product.photos">
+      <img [src]="photo.url" [alt]="photo.id"/>
+    </ion-slide>
+  </ion-slides>
+
+  
+</ion-content>

@@ -81,20 +81,25 @@ export class LoginPage implements OnInit {
   }
 
   async loginFacebook() {
-    const resp = await FacebookLogin.login({ permissions: ['email'] }) as FacebookLoginResponse;
-    if (resp.accessToken) {
-      this.authService.loginFacebook(resp.accessToken.token).subscribe(
-
-        (x)=> this.router.navigate(['/products']),
-        async error => {
-          (await this.alertCtrl.create({
-            header: 'Login error',
-            message: error,
-            buttons: ['Ok']
-          })).present();
-        }
-      );
+    try{
+      const resp = await FacebookLogin.login({ permissions: ['email'] }) as FacebookLoginResponse;
+      if (resp.accessToken) {
+        this.authService.loginFacebook(resp.accessToken.token).subscribe(
+  
+          (x)=> this.router.navigate(['/products']),
+          async error => {
+            (await this.alertCtrl.create({
+              header: 'Login error',
+              message: error,
+              buttons: ['Ok']
+            })).present();
+          }
+        );
+      }
+    }catch(err){
+      console.log(err)
     }
+    
 
 
   }

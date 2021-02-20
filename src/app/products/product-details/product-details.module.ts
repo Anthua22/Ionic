@@ -18,13 +18,14 @@ const routes: Routes = [
 
       },
       { 
-        path: 'comments', 
-        loadChildren: () => import('./product-comments/product-comments.module').then( m => m.ProductCommentsPageModule)
+        path: 'photos', 
+        loadChildren: () => import('./photos-product/photos-product.module').then( m => m.PhotosProductPageModule)
       },
       {
         path: 'location',
         loadChildren: ()=>import('./product-location/product-location.module').then(m=> m.ProductLocationPageModule)
       },
+     
       { path: '', pathMatch: 'full', redirectTo: 'info' }
     ]
   }
